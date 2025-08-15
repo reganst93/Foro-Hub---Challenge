@@ -7,14 +7,12 @@ import com.alura.Foro.Hub_Challenge.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -30,7 +28,8 @@ public class Topico {
     private String titulo;
     @NotBlank
     private String mensaje;
-    @NotBlank
+
+    @NotNull
     private LocalDateTime fechaCreacion;
     @NotBlank
     private String status;
@@ -43,6 +42,7 @@ public class Topico {
     @JoinColumn(name = "curso_id")
     @NotNull
     private Curso curso;
+
 
     @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL)
     private List<Respuesta> respuestas;;
